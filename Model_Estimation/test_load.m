@@ -1,3 +1,5 @@
+% https://www.mathworks.com/matlabcentral/newsreader/view_thread/33101
+
 % bersihkan segala-galanya
 close all
 clc

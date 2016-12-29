@@ -1,3 +1,6 @@
+% https://www.mathworks.com/help/ident/examples/dealing-with-multi-variable-systems-identification-and-analysis.html
+% http://www-rohan.sdsu.edu/doc/matlab/toolbox/ident/ch3tut24.html
+
 % bersihkan segala-galanya
 close all
 clc
@@ -31,8 +34,6 @@ armaxmod12 = armax(obj_data(1:n_learn,'y12',:),'na',na,'nb',[nb nb nb],'nc',nc,'
 
 % bandingkan hasil untuk validasi
 figure('Name','MISO ARMAX Y11','NumberTitle','off')
-%compare(obj_data(n_learn+1:n_total,'y11',:),armaxmod11);
-compare(obj_data(1:n_learn,'y11',:),armaxmod11);
+compare(obj_data(n_learn+1:n_total,'y11',:),armaxmod11);
 figure('Name','MISO ARMAX Y12','NumberTitle','off')
-%compare(obj_data(n_learn+1:n_total,'y12',:),armaxmod12);
-compare(obj_data(1:n_learn,'y12',:),armaxmod12);
+compare(obj_data(n_learn+1:n_total,'y12',:),armaxmod12);
