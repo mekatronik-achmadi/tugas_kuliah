@@ -31,9 +31,18 @@ nk = 10; % jarak mundur input variable
 % model MISO y11 dan y12 kemudian merge
 armaxmod11 = armax(obj_data(1:n_learn,'y11',:),'na',na,'nb',[nb nb nb],'nc',nc,'nk',[nk nk nk]);
 armaxmod12 = armax(obj_data(1:n_learn,'y12',:),'na',na,'nb',[nb nb nb],'nc',nc,'nk',[nk nk nk]);
+armaxmod = merge(armaxmod11,armaxmod12)
 
 % bandingkan hasil untuk validasi
 figure('Name','MISO ARMAX Y11','NumberTitle','off')
 compare(obj_data(n_learn+1:n_total,'y11',:),armaxmod11);
+
 figure('Name','MISO ARMAX Y12','NumberTitle','off')
 compare(obj_data(n_learn+1:n_total,'y12',:),armaxmod12);
+
+figure('Name','MIMO','NumberTitle','off')
+subplot(211);
+compare(obj_data(n_learn+1:n_total,'y11',:),armaxmod);
+grid;
+subplot(212);
+compare(obj_data(n_learn+1:n_total,'y12',:),armaxmod);
