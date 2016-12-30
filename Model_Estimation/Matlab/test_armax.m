@@ -19,7 +19,7 @@ obj_data = iddata([y11,y12],[u11,u12,u13],1);
 obj_data.InputName  = {'u11';'u12';'u13'};
 obj_data.OutputName  = {'y11';'y12'};
 
-% persamaan ARMAX
+% persamaan ARMA
 % A(q)y(t) = B(q)u(t-nk) + C(q)e(t)
 
 % parameter ARMAX
