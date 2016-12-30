@@ -6,7 +6,7 @@ clc
 clear all
 
 % ambil data ternormalisasi ke memory
-test_load;
+data_load;
 
 % jangkauan learning data
 % n_learn << n_total
