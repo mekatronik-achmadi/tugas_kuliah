@@ -16,5 +16,5 @@ from data_load import DataLoad
 dat = DataLoad()
 #dat.plot()
 
-d = {'u11': dat.u11, 'u12': dat.u12}
+d = {'u11':dat.u11, 'u12':dat.u12, 'u13':dat.u13}
 df = pd.DataFrame(data=d)
