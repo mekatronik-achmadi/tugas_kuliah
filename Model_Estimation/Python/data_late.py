@@ -13,7 +13,6 @@ class DataLate:
     
     def late(self,data_input,late_order):
         ndim = np.shape(data_input)[0]
-        
         mat_late = np.zeros(ndim)
         
         for i in range(late_order,ndim):
