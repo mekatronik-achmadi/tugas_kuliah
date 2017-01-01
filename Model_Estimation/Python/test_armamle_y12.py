@@ -118,6 +118,7 @@ estim = model.fit({
                     'a3':1,'a3_1':1,'a3_2':1,
                     'sigma':1
                   })
+print(estim)
 estim_coef = estim['x']
 
 # =============================== VALIDATION ===========================
