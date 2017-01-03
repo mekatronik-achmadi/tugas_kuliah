@@ -167,7 +167,7 @@ estim_yy = np.zeros(dat_valid.dim)
 # 2 step behind
 # output excluded
 
-estim_y = + estim_coef_ar['a1']*wx1 + estim_coef_ar['a1_1']*wx1_1 + estim_coef_ar['a1_2']*wx1_2 + estim_coef_ar['a2']*wx2 + estim_coef_ar['a2_1']*wx2_1 + estim_coef_ar['a2_2']*wx2_2 + estim_coef_ar['a3']*wx3 + estim_coef_ar['a3_1']*wx3_1 + estim_coef_ar['a3_2']*wx3_2
+estim_y = estim_coef_ar['a1']*wx1 + estim_coef_ar['a1_1']*wx1_1 + estim_coef_ar['a1_2']*wx1_2 + estim_coef_ar['a2']*wx2 + estim_coef_ar['a2_1']*wx2_1 + estim_coef_ar['a2_2']*wx2_2 + estim_coef_ar['a3']*wx3 + estim_coef_ar['a3_1']*wx3_1 + estim_coef_ar['a3_2']*wx3_2
 
 # re-calculate model
 # 2 step behind
