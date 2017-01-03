@@ -102,6 +102,12 @@ model = mle.Normal(y1,
                    a3*x3 + a3_1*x3_1 + a3_2*x3_2,
                    sigma)
                    
+model_ar = mle.Normal(y1,
+                   a1*x1 + a1_1*x1_1 + a1_2*x1_2 +
+                   a2*x2 + a2_1*x2_1 + a2_2*x2_2 +
+                   a3*x3 + a3_1*x3_1 + a3_2*x3_2,
+                   sigma)
+                   
 #=========================================
 
 # solve model
@@ -121,6 +127,20 @@ estim = model.fit({
 print(estim)
 estim_coef = estim['x']
 
+estim_ar = model_ar.fit({
+                    'y1':vy1,
+                    'x1':vx1, 'x1_1':vx1_1, 'x1_2':vx1_2,
+                    'x2':vx2, 'x2_1':vx2_1, 'x2_2':vx2_2,
+                    'x3':vx3, 'x3_1':vx3_1, 'x3_2':vx3_2
+                    },{
+                    'a1':1,'a1_1':1,'a1_2':1,
+                    'a2':1,'a2_1':1,'a2_2':1,
+                    'a3':1,'a3_1':1,'a3_2':1,
+                    'sigma':1
+                  })
+print(estim_ar)
+estim_coef_ar = estim_ar['x']
+
 # =============================== VALIDATION ===========================
 
 # Assigning variables
@@ -138,7 +158,7 @@ wx3_1 = lt.late(wx3,1)
 wx3_2 = lt.late(wx3,2)
 
 measu_y = dat_valid.y12
-#estim_y = np.zeros(dat_valid.dim)
+estim_y = np.zeros(dat_valid.dim)
 estim_yy = np.zeros(dat_valid.dim)
 
 #=========================================
@@ -147,7 +167,7 @@ estim_yy = np.zeros(dat_valid.dim)
 # 2 step behind
 # output excluded
 
-#estim_y = + estim_coef['a1']*wx1 + estim_coef['a1_1']*wx1_1 + estim_coef['a1_2']*wx1_2 + estim_coef['a2']*wx2 + estim_coef['a2_1']*wx2_1 + estim_coef['a2_2']*wx2_2 + estim_coef['a3']*wx3 + estim_coef['a3_1']*wx3_1 + estim_coef['a3_2']*wx3_2
+estim_y = + estim_coef_ar['a1']*wx1 + estim_coef_ar['a1_1']*wx1_1 + estim_coef_ar['a1_2']*wx1_2 + estim_coef_ar['a2']*wx2 + estim_coef_ar['a2_1']*wx2_1 + estim_coef_ar['a2_2']*wx2_2 + estim_coef_ar['a3']*wx3 + estim_coef_ar['a3_1']*wx3_1 + estim_coef_ar['a3_2']*wx3_2
 
 # re-calculate model
 # 2 step behind
@@ -166,7 +186,7 @@ for i in range(3,dat_valid.dim):
 plt.figure()
 plt.title('Compare')
 plt.plot(dat_valid.t,measu_y, 'r', label='measured')
-#plt.plot(dat_valid.t,estim_y, 'g', label='estimation')
+plt.plot(dat_valid.t,estim_y, 'g', label='estimation')
 plt.plot(dat_valid.t,estim_yy, 'b', label='estimation-y')
 plt.legend(loc='best')
 plt.grid()
