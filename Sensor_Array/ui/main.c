@@ -18,6 +18,8 @@ static adcsample_t samples[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
 adcsample_t adc0,adc1,adc2,adc3,adc4,adc5,adc6,adc7;
 uint32_t sum_adc0,sum_adc1,sum_adc2,sum_adc3,sum_adc4,sum_adc5,sum_adc6,sum_adc7;
 
+uint16_t ang_polar,ang_azimuth;
+
 void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
   (void) buffer; (void) n;
   int i;
@@ -84,6 +86,7 @@ static THD_FUNCTION(adcThread,arg) {
 }
 
 char txt_adc[6];
+char txt_angle[6];
 
 static void TextUpdate(void){
 
@@ -110,6 +113,12 @@ static void TextUpdate(void){
 
     chsnprintf(txt_adc,6,"%4i",adc7);
     gwinSetText(ghlblADC7, txt_adc, TRUE);
+
+    chsnprintf(txt_angle,6,"%4i",ang_polar);
+    gwinSetText(ghlblPolar, txt_angle, TRUE);
+
+    chsnprintf(txt_angle,6,"%4i",ang_azimuth);
+    gwinSetText(ghlblAzimuth, txt_angle, TRUE);
 
     chThdSleepMilliseconds(100);
 }
@@ -203,6 +212,16 @@ static void createWidgets(void) {
     wi.text = "0";
     ghlblADC7 = gwinLabelCreate(0, &wi);
     gwinLabelSetAttribute(ghlblADC7, 50, "ADC7:");
+
+    wi.g.width = 100; wi.g.height = 20; wi.g.x = 10, wi.g.y = 160;
+    wi.text = "0";
+    ghlblPolar = gwinLabelCreate(0, &wi);
+    gwinLabelSetAttribute(ghlblPolar, 50, "P:");
+
+    wi.g.width = 100; wi.g.height = 20; wi.g.x = 130, wi.g.y = 160;
+    wi.text = "0";
+    ghlblAzimuth = gwinLabelCreate(0, &wi);
+    gwinLabelSetAttribute(ghlblAzimuth, 50, "A:");
 
 }
 
