@@ -1,7 +1,8 @@
 
 \documentclass[journal]{IEEEtran}
-\usepackage{blindtext}
 \usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage[cmex10]{amsmath}
 
 \ifCLASSINFOpdf
 
@@ -53,16 +54,75 @@ To increase detection capability then multiple LDR sensor is used.
 These multiple LDR sensor arranged in an array.
 To approach spherical position of the sun, this sensor array build in a spherical construction.
 
+In this study, our main objective is construct a design that can be used to estimate sun position.
+In section II, we show briefly the design.
+In section II, we show mathematical model for point-angle conversion, including the pseudocode. 
+In last section we will conclude our works.
 
-\subsection{Design}
+
+\section{Design}
+This design build by some main part. 
+First is LDR Array in spherical construction.
+Second part is main board that process and diplay result.
+Our main board is MiniSTM32F103VG, based on STM32F103VG chip.
+Third part, As the display, we use TFT LCD that communicate with chip using FSMC protocols.
+Last part, as data communication, we use TTL UART communication protocol.\\
+
+\begin{center} 
 \includegraphics[width=250pt]{skema}\\
-\includegraphics[width=100pt]{sensorball}
-\includegraphics[width=100pt]{wiring}
-\includegraphics[width=100pt]{interface}
+Fig 1.Design Schematic
+\end{center}
 
+\subsection{Sensor Array}
+Each LDR sensor build on voltage divider circuit type.
+All sensor connected in one VDD-GND network, but independent ADC outputs.
+There's 8 sensors on construction.
+
+\begin{center} 
+\includegraphics[width=150pt]{sensor}\\
+Fig 2.Sensor Schematic
+\end{center}
+
+Output voltage follow:\\
+
+$V_{adc} = \frac{R1}{R2} V_{vdd}$\\
+
+Sensor than build on spherical structure like figure below (radius is 15 cm):\\
+
+\begin{center} 
+\includegraphics[width=100pt]{sensorball}\\
+Fig 3.Sensor Array in Spherical Structure
+\end{center}
+
+Because we only compare a LDR to another, we don't need to know how LDR's response againts light.
+
+\subsection{Interface}
+
+Next part is interface design. 
+We interfaced all LDR sensors to ADC inputs available in STM32F103VG chip.
+All ADC has 12bit conversion resolusion.
+Since there's 8 sensors, we use 8 ADC inputs.
+For sensors power, we took VDD and GND voltages also from main board.\\
+
+\begin{center} 
+\includegraphics[width=100pt]{wiring}
+\includegraphics[width=100pt]{interface}\\
+Fig 4.Sensor ADC Interface
+\end{center}
+
+(not finish written yet)
+
+\section{Conversion}
+
+(not finish written yet)
+ 
 \section{Conclusion}
 
+(not finish written yet)
+
 \section*{Acknowledgment}
+
+(not finish written yet)
 
 \ifCLASSOPTIONcaptionsoff
   \newpage
@@ -107,11 +167,7 @@ Sensors, vol. 11, no. 10, pp. 9764–9777, 2011
 
 \end{thebibliography}
 
-
-
-
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{Foto_Berdasi}}]{Achmadi}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{default}}]{Achmadi}
 Bachelor from Engineering Physics of Sepuluh Nopember Institute of Technology.
 Open-Sources technology entusiast.
 Mercenary mid-level technology developer.
